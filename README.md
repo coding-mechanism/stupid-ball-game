@@ -19,6 +19,7 @@ This is a simple, interactive ball-and-bar game built using HTML, CSS, and JavaS
 3. **Guide the Ball**: The objective is to roll the ball across the bar and drop it into the target hole (colored differently).
 4. **Avoid Other Holes**: Avoid dropping the ball into any non-target holes.
 5. **Change Layout**: Click the "Change Seed" button to randomize the hole layout.
+6. **Vary Bar and Ball Speed**: Use the sliders to change the speed of the bar and ball.
 
 ## Installation
 
