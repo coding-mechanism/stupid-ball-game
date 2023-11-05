@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gravity Ball Game</title>
+    <style>
+      canvas {
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+
+      .button-container {
+        text-align: center;
+        margin-top: 20px; /* Adjusts the space from the top */
+      }
+
+      #changeSeedButton {
+        width: 15vh;
+        height: 5vh;
+        /* Add more styling if needed */
+      }
+
+      /* Additional styles for your canvas */
+      #gameCanvas {
+        display: block;
+        margin: 0 auto; /* This centers the canvas horizontally */
+      }
+    </style>
+  </head>
+  <body style="background-color: black">
+    <div class="button-container">
+      <button id="changeSeedButton" type="button">Change Seed</button>
+    </div>
+    <canvas
+      id="gameCanvas"
+      width="400"
+      height="600"
+      style="background-color: white"
+    ></canvas>
+    <script src="index.js"></script>
+  </body>
+</html>
