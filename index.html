@@ -15,16 +15,36 @@
         margin-top: 20px; /* Adjusts the space from the top */
       }
 
-      #changeSeedButton {
-        width: 15vh;
-        height: 5vh;
-        /* Add more styling if needed */
+      .slider-container {
+        margin-top: 10px;
+        margin: 1vh;
+        color: #0095DD;
       }
+
+      .slider-container input[type="range"] {
+        width: 100%; /* Make slider take up full width of its container */
+      }
+
+      input[type="range"] {
+        width: 100%; /* Adjust the width as needed */
+      }
+
+      #changeSeedButton {
+  width: 120px; /* Static width, adjust as needed */
+  height: 40px; /* Static height, adjust as needed */
+  /* Other styling properties */
+}
+
 
       /* Additional styles for your canvas */
       #gameCanvas {
         display: block;
         margin: 0 auto; /* This centers the canvas horizontally */
+      }
+
+            #gameContainer {
+        width: 400px;
+        margin: auto; /* This centers the container */
       }
     </style>
   </head>
@@ -32,12 +52,26 @@
     <div class="button-container">
       <button id="changeSeedButton" type="button">Change Seed</button>
     </div>
-    <canvas
-      id="gameCanvas"
-      width="400"
-      height="600"
-      style="background-color: white"
-    ></canvas>
+
+    <div id="gameContainer">
+      <div class="slider-container">
+        <label for="barSpeed">Bar Speed: <span id="barSpeedValue" style="color: #0095DD">Easy</span></label>
+        <input type="range" id="barSpeed" min="1" max="10" value="2" />
+      </div>
+      <div class="slider-container">
+        <label for="ballAcceleration">Ball Acceleration: <span id="ballAccelerationValue" style="color: #0095DD">Novice</span></label>
+        <input type="range" id="ballAcceleration" min="1" max="20" value="5" />
+      </div>
+    </div>
+    
+
+      <canvas
+        id="gameCanvas"
+        width="400"
+        height="600"
+        style="background-color: white"
+      ></canvas>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

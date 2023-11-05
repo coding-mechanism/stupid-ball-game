@@ -15,7 +15,7 @@ This is a simple, interactive ball-and-bar game built using HTML, CSS, and JavaS
 ## How to Play
 
 1. **Start the Game**: Load the game in a web browser.
-2. **Control the Bar**: Use the arrow keys (`left` and `right`) to control each end of the bar.
+2. **Control the Bar**: Use the keys (`w` and `s`) to control the left side of the bar, and arrow keys (`up` and `down`) to control the right side of the bar.
 3. **Guide the Ball**: The objective is to roll the ball across the bar and drop it into the target hole (colored differently).
 4. **Avoid Other Holes**: Avoid dropping the ball into any non-target holes.
 5. **Change Layout**: Click the "Change Seed" button to randomize the hole layout.

@@ -165,10 +165,10 @@ function updateBarPosition() {
     newLeftY + bar.moveSpeed + barThickness <= canvas.height
   )
     newLeftY += bar.moveSpeed;
-  if (keysPressed["ArrowUp"] && newRightY - bar.moveSpeed >= 0)
+  if (keysPressed["i"] && newRightY - bar.moveSpeed >= 0)
     newRightY -= bar.moveSpeed;
   if (
-    keysPressed["ArrowDown"] &&
+    keysPressed["j"] &&
     newRightY + bar.moveSpeed + barThickness <= canvas.height
   )
     newRightY += bar.moveSpeed;
@@ -180,13 +180,13 @@ function updateBarPosition() {
 }
 
 function handleKeyDown(event) {
-  if (["ArrowUp", "ArrowDown", "w", "s"].includes(event.key)) {
+  if (["i", "j", "w", "s"].includes(event.key)) {
     keysPressed[event.key] = true;
   }
 }
 
 function handleKeyUp(event) {
-  if (["ArrowUp", "ArrowDown", "w", "s"].includes(event.key)) {
+  if (["i", "j", "w", "s"].includes(event.key)) {
     keysPressed[event.key] = false;
   }
 }
@@ -292,10 +292,61 @@ function resetGame() {
   animationFrameId = requestAnimationFrame(update);
 }
 
+function getDifficultyLevel(value, max) {
+  const segments = ['super lil bitch', 'lil bitch', 'ok', 'dam', 'yeah right'];
+  const index = Math.floor((value / max) * (segments.length - 1));
+  return segments[index];
+}
+
+
+function initializeSliders() {
+  const barSpeedSlider = document.getElementById('barSpeed');
+  const savedBarSpeed = localStorage.getItem('barSpeed') || barSpeedSlider.value;
+  barSpeedSlider.value = savedBarSpeed;
+  bar.moveSpeed = parseInt(savedBarSpeed, 10) * 0.4;
+  document.getElementById('barSpeedValue').textContent = getDifficultyLevel(savedBarSpeed, barSpeedSlider.max);
+
+  const ballAccelerationSlider = document.getElementById('ballAcceleration');
+  const savedBallAcceleration = localStorage.getItem('ballAcceleration') || ballAccelerationSlider.value;
+  ballAccelerationSlider.value = savedBallAcceleration;
+  gravity = parseInt(savedBallAcceleration, 10) * .4;
+  document.getElementById('ballAccelerationValue').textContent = getDifficultyLevel(savedBallAcceleration, ballAccelerationSlider.max);
+}
+
+// Call this function when the page loads
+initializeSliders();
+
+
+function adjustContainerWidth() {
+  const canvas = document.getElementById("gameCanvas");
+  const gameContainer = document.getElementById("gameContainer");
+  gameContainer.style.width = `${canvas.offsetWidth}px`;
+}
+
+// Call this function whenever the canvas size changes
+adjustContainerWidth();
+
+// Optionally, call it on window resize if the canvas size is responsive
+window.addEventListener("resize", adjustContainerWidth);
+
 update();
 
 document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("changeSeedButton")
     .addEventListener("click", changeSeedAndRegenerateHoles);
+  
+    document.getElementById('barSpeed').addEventListener('input', function(e) {
+      const barSpeedValue = e.target.value;
+      localStorage.setItem('barSpeed', barSpeedValue);
+      bar.moveSpeed = parseInt(barSpeedValue, 10);
+      document.getElementById('barSpeedValue').textContent = getDifficultyLevel(barSpeedValue, e.target.max);
+    });
+    
+    document.getElementById('ballAcceleration').addEventListener('input', function(e) {
+      const ballAccelerationValue = e.target.value;
+      localStorage.setItem('ballAcceleration', ballAccelerationValue);
+      gravity = parseInt(ballAccelerationValue, 10);
+      document.getElementById('ballAccelerationValue').textContent = getDifficultyLevel(ballAccelerationValue, e.target.max);
+    });
 });
