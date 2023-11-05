@@ -298,19 +298,37 @@ function getDifficultyLevel(value, max) {
   return segments[index];
 }
 
+function interpretBarSpeed(value) {
+  const scalingFactor = 0.8; // Example scaling factor
+  return value * scalingFactor;
+}
+
+function interpretBallAcceleration(value) {
+  const scalingFactor = 0.8; // Example scaling factor
+  return value * scalingFactor;
+}
+
 
 function initializeSliders() {
   const barSpeedSlider = document.getElementById('barSpeed');
-  const savedBarSpeed = localStorage.getItem('barSpeed') || barSpeedSlider.value;
-  barSpeedSlider.value = savedBarSpeed;
-  bar.moveSpeed = parseInt(savedBarSpeed, 10);
-  document.getElementById('barSpeedValue').textContent = getDifficultyLevel(savedBarSpeed, barSpeedSlider.max);
+ const savedBarSpeed = localStorage.getItem('barSpeed');
+  if (savedBarSpeed !== null) {
+    const barSpeedSlider = document.getElementById('barSpeed');
+    barSpeedSlider.value = savedBarSpeed;
+    // Use the interpreted value for game logic
+    bar.moveSpeed = interpretBarSpeed(parseInt(savedBarSpeed, 10));
+    document.getElementById('barSpeedValue').textContent = getDifficultyLevel(savedBarSpeed, barSpeedSlider.max);
+  }
 
   const ballAccelerationSlider = document.getElementById('ballAcceleration');
-  const savedBallAcceleration = localStorage.getItem('ballAcceleration') || ballAccelerationSlider.value;
-  ballAccelerationSlider.value = savedBallAcceleration;
-  gravity = parseInt(savedBallAcceleration, 10);
-  document.getElementById('ballAccelerationValue').textContent = getDifficultyLevel(savedBallAcceleration, ballAccelerationSlider.max);
+  const savedBallAcceleration = localStorage.getItem('ballAcceleration');
+  if (savedBallAcceleration !== null) {
+    const ballAccelerationSlider = document.getElementById('ballAcceleration');
+    ballAccelerationSlider.value = savedBallAcceleration;
+    gravity = interpretBallAcceleration(parseInt(savedBallAcceleration, 10)); // Use the interpreted value for game logic
+    document.getElementById('ballAccelerationValue').textContent = getDifficultyLevel(savedBallAcceleration, ballAccelerationSlider.max);
+  }
+
 }
 
 // Call this function when the page loads
@@ -339,14 +357,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('barSpeed').addEventListener('input', function(e) {
       const barSpeedValue = e.target.value;
       localStorage.setItem('barSpeed', barSpeedValue);
-      bar.moveSpeed = parseInt(barSpeedValue, 10);
+      bar.moveSpeed = interpretBarSpeed(parseInt(barSpeedValue, 10));
       document.getElementById('barSpeedValue').textContent = getDifficultyLevel(barSpeedValue, e.target.max);
     });
     
     document.getElementById('ballAcceleration').addEventListener('input', function(e) {
       const ballAccelerationValue = e.target.value;
       localStorage.setItem('ballAcceleration', ballAccelerationValue);
-      gravity = parseInt(ballAccelerationValue, 10);
+      gravity = interpretBallAcceleration(parseInt(ballAccelerationValue, 10));
       document.getElementById('ballAccelerationValue').textContent = getDifficultyLevel(ballAccelerationValue, e.target.max);
     });
 });
