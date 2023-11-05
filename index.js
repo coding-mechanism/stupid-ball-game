@@ -16,11 +16,11 @@ const bar = {
   leftY: canvas.height - 50,
   rightY: canvas.height - 50,
   width: 10,
-  moveSpeed: 2, // The speed at which each end of the bar moves
+  moveSpeed: 3, // The speed at which each end of the bar moves
 };
 
 const maxAngle = (30 * Math.PI) / 180; // Convert maximum angle to radians
-let gravity = 20; // Gravity effect on the ball's rolling
+let gravity = 25; // Gravity effect on the ball's rolling
 
 const targetHole = {
   x: canvas.width / 2,
@@ -31,8 +31,8 @@ const targetHole = {
 
 // Key state tracking
 let keysPressed = {
-  ArrowUp: false,
-  ArrowDown: false,
+  i: false,
+  j: false,
   w: false,
   s: false,
 };
@@ -282,8 +282,8 @@ function resetGame() {
 
   // Reset key presses
   keysPressed = {
-    ArrowUp: false,
-    ArrowDown: false,
+    i: false,
+    j: false,
     w: false,
     s: false,
   };
@@ -303,13 +303,13 @@ function initializeSliders() {
   const barSpeedSlider = document.getElementById('barSpeed');
   const savedBarSpeed = localStorage.getItem('barSpeed') || barSpeedSlider.value;
   barSpeedSlider.value = savedBarSpeed;
-  bar.moveSpeed = parseInt(savedBarSpeed, 10) * 0.4;
+  bar.moveSpeed = parseInt(savedBarSpeed, 10);
   document.getElementById('barSpeedValue').textContent = getDifficultyLevel(savedBarSpeed, barSpeedSlider.max);
 
   const ballAccelerationSlider = document.getElementById('ballAcceleration');
   const savedBallAcceleration = localStorage.getItem('ballAcceleration') || ballAccelerationSlider.value;
   ballAccelerationSlider.value = savedBallAcceleration;
-  gravity = parseInt(savedBallAcceleration, 10) * .4;
+  gravity = parseInt(savedBallAcceleration, 10);
   document.getElementById('ballAccelerationValue').textContent = getDifficultyLevel(savedBallAcceleration, ballAccelerationSlider.max);
 }
 
