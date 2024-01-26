@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a simple, interactive ball-and-bar game built using HTML, CSS, and JavaScript. In the game, players control a horizontal bar at the bottom of the screen to catch and guide a falling ball into a target hole. The game features dynamically generated holes with a unique target hole, offering a challenging and engaging experience. Demo here: https://c0rdurb0y.github.io/stupid-ball-game/
+This is a simple, interactive ball-and-bar game built using HTML, CSS, and JavaScript. In the game, players control a horizontal bar at the bottom of the screen to catch and guide a falling ball into a target hole. The game features dynamically generated holes with a unique target hole, offering a challenging and engaging experience. Demo here: https://coding-mechanism.github.io/stupid-ball-game/
 
 ## Features
 
@@ -25,7 +25,7 @@ This is a simple, interactive ball-and-bar game built using HTML, CSS, and JavaS
 
 To play the game locally:
 
-1. Clone the repository: git clone https://github.com/c0rdurb0y/stupid-ball-game
+1. Clone the repository: git clone https://github.com/coding-mechanism/stupid-ball-game
 2. Open `index.html` in a web browser.
 
 ## Contributing
